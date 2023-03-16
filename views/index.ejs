@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title> 
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="Appsignup">
+        <header class="App-headerfor">
+            <p class='text1'>New Password</p>
+            <p id='textmatch1'></p>
+            <div class='App_main' > 
+                <form action="" method="post">
+                    <p id='textmatch'>Password</p>    
+                    <input type="password" onkeyup="check()" name="pw" id ="pw" placeholder="Password"/><br/>
+                    <p class='text2'>Confirm Password</p>
+                    <input type="password" name="confipw"  onkeyup="check()" id ="confipw" placeholder="Confirm passoword"/><br/>
+                    <div class='App-login'>
+                        <input type="submit" value ="Continue"  class='textlogin'/>
+                    </div>      
+                </form>
+            </div> 
+        </header>
+    </div>  
+    <script>
+        var check = function()  
+        {
+            if (document.getElementById('pw').value ==
+            document.getElementById('confipw').value) {
+            document.getElementById('textmatch').style.color = 'white';
+            document.getElementById('textmatch').innerHTML = 'Password';
+            } else {
+            document.getElementById('textmatch').style.color = 'red';
+            document.getElementById('textmatch').innerHTML = 'Passwords are not the same';
+            }
+        }
+        var status = '<%- JSON.stringify(status) %>';
+        if (JSON.parse(status) == "verified")
+        {
+            
+            window.location.href="http://localhost:3000/";
+                    
+        }
+        else if (JSON.parse(status) == "User not found")
+        {
+            
+            document.getElementById('textmatch1').innerHTML = 'User not found';
+                    
+        }
+        else if(JSON.parse(status) == "passwords")
+        {
+            document.getElementById('textmatch1').innerHTML = 'Passwords are not the same';
+        }
+    
+    </script>
+</body>
+</html>
